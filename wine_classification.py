@@ -1,6 +1,7 @@
 from sklearn.datasets import load_wine
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, classification_report
 import pandas as pd
 
 # 데이터 불러오기
@@ -28,3 +29,9 @@ model = RandomForestClassifier(n_estimators=100, random_state=42)
 model.fit(X_train, y_train)
 
 print("\n모델 학습 완료")
+
+# 예측 및 정확도
+y_pred = model.predict(X_test)
+
+print("\n정확도:", accuracy_score(y_test, y_pred))
+print("\n분류 보고서:\n", classification_report(y_test, y_pred, target_names=wine.target_names))
